@@ -200,14 +200,21 @@ struct RotaryDial: View {
     
     private func numbers(size: CGFloat, radius: CGFloat) -> some View {
         let every = 5
+        let labelRadius = radius - size * 0.01
+        let labelSize = size * 0.07
+        
         return ZStack {
             ForEach(stride(from: 0, to: range, by: every).map { $0 }, id: \.self) { n in
                 let a = Double(n) * 360.0 / Double(range)
-                let p = pointOnCircle(radius: radius, angleCW: a)
-                Text("\(n)")
-                    .font(.system(size: size * 0.075, weight: .semibold, design: .rounded))
-                    .foregroundStyle(.white.opacity(0.85))
-                    .position(x: size / 2 + p.x, y: size / 2 + p.y)
+                
+                ZStack {
+                    Text("\(n)")
+                        .font(.system(size: labelSize, weight: .semibold, design: .rounded))
+                        .foregroundStyle(.white.opacity(0.85))
+                        .offset(y: -labelRadius)
+                }
+                .frame(width: size, height: size)
+                .rotationEffect(.degrees(a))
             }
         }
     }
@@ -263,10 +270,6 @@ struct RotaryDial: View {
         return d
     }
     
-    private func pointOnCircle(radius: CGFloat, angleCW: Double) -> CGPoint {
-        let rad = (angleCW - 90.0) * .pi / 180.0
-        return CGPoint(x: CGFloat(cos(rad)) * radius, y: CGFloat(sin(rad)) * radius)
-    }
 }
 
 private struct Triangle: Shape {
