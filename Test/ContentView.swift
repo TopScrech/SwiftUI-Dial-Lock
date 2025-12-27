@@ -6,6 +6,7 @@ struct RotaryPasscodeLock: View {
     var dialRange: Int = 40
     
     @State private var entered: [Int] = []
+    @State private var dialValue: Int = 0
     
     var body: some View {
         ZStack {
@@ -27,7 +28,7 @@ struct RotaryPasscodeLock: View {
                 
                 Spacer()
                 
-                RotaryDial(value: .constant(0), range: dialRange, showsNumbers: true, snap: true) { picked in
+                RotaryDial(value: $dialValue, range: dialRange, showsNumbers: true, snap: true) { picked in
                     guard entered.count < codeLength else { return }
                     entered.append(picked)
                 }
@@ -48,6 +49,7 @@ struct RotaryPasscodeLock: View {
                     
                     Button {
                         entered.removeAll()
+                        dialValue = 0
                     } label: {
                         Text("Reset")
                             .font(.system(.headline, design: .rounded).weight(.semibold))
@@ -161,6 +163,17 @@ struct RotaryDial: View {
                 dialRotationCW = Double(value) * stepAngle
                 lastEmittedValue = value
                 feedback.prepare()
+            }
+            .onChange(of: value) { _, newValue in
+                guard lastTouchAngleCW == nil else { return }
+                let target = Double(newValue) * stepAngle
+                if snap {
+                    withAnimation(.spring(response: 0.32, dampingFraction: 0.82)) {
+                        dialRotationCW = target
+                    }
+                } else {
+                    dialRotationCW = target
+                }
             }
         }
         .aspectRatio(1, contentMode: .fit)
