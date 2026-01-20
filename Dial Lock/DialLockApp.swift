@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct TestApp: App {
+struct DialLockApp: App {
     var body: some Scene {
         WindowGroup {
             RotaryPasscodeLock()

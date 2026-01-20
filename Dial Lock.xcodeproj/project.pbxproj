@@ -6,14 +6,18 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F3DE842F2F1FBCAA00A775FF /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3DE842E2F1FBCAA00A775FF /* ScrechKit */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
-		F343B1062F00587A00AD0818 /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F343B1062F00587A00AD0818 /* Dial Lock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dial Lock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		F343B1082F00587A00AD0818 /* Test */ = {
+		F343B1082F00587A00AD0818 /* Dial Lock */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Test;
+			path = "Dial Lock";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3DE842F2F1FBCAA00A775FF /* ScrechKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -32,7 +37,7 @@
 		F343B0FD2F00587A00AD0818 = {
 			isa = PBXGroup;
 			children = (
-				F343B1082F00587A00AD0818 /* Test */,
+				F343B1082F00587A00AD0818 /* Dial Lock */,
 				F343B1072F00587A00AD0818 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -40,7 +45,7 @@
 		F343B1072F00587A00AD0818 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F343B1062F00587A00AD0818 /* Test.app */,
+				F343B1062F00587A00AD0818 /* Dial Lock.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +53,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F343B1052F00587A00AD0818 /* Test */ = {
+		F343B1052F00587A00AD0818 /* Dial Lock */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F343B1112F00587B00AD0818 /* Build configuration list for PBXNativeTarget "Test" */;
+			buildConfigurationList = F343B1112F00587B00AD0818 /* Build configuration list for PBXNativeTarget "Dial Lock" */;
 			buildPhases = (
 				F343B1022F00587A00AD0818 /* Sources */,
 				F343B1032F00587A00AD0818 /* Frameworks */,
@@ -61,13 +66,14 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				F343B1082F00587A00AD0818 /* Test */,
+				F343B1082F00587A00AD0818 /* Dial Lock */,
 			);
-			name = Test;
+			name = "Dial Lock";
 			packageProductDependencies = (
+				F3DE842E2F1FBCAA00A775FF /* ScrechKit */,
 			);
 			productName = Test;
-			productReference = F343B1062F00587A00AD0818 /* Test.app */;
+			productReference = F343B1062F00587A00AD0818 /* Dial Lock.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -85,7 +91,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F343B1012F00587A00AD0818 /* Build configuration list for PBXProject "Test" */;
+			buildConfigurationList = F343B1012F00587A00AD0818 /* Build configuration list for PBXProject "Dial Lock" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -94,12 +100,15 @@
 			);
 			mainGroup = F343B0FD2F00587A00AD0818;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				F3DE842D2F1FBCAA00A775FF /* XCRemoteSwiftPackageReference "ScrechKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F343B1072F00587A00AD0818 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F343B1052F00587A00AD0818 /* Test */,
+				F343B1052F00587A00AD0818 /* Dial Lock */,
 			);
 		};
 /* End PBXProject section */
@@ -313,7 +322,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F343B1012F00587A00AD0818 /* Build configuration list for PBXProject "Test" */ = {
+		F343B1012F00587A00AD0818 /* Build configuration list for PBXProject "Dial Lock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F343B10F2F00587B00AD0818 /* Debug */,
@@ -322,7 +331,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F343B1112F00587B00AD0818 /* Build configuration list for PBXNativeTarget "Test" */ = {
+		F343B1112F00587B00AD0818 /* Build configuration list for PBXNativeTarget "Dial Lock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F343B1122F00587B00AD0818 /* Debug */,
@@ -332,6 +341,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F3DE842D2F1FBCAA00A775FF /* XCRemoteSwiftPackageReference "ScrechKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TopScrech/ScrechKit";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F3DE842E2F1FBCAA00A775FF /* ScrechKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3DE842D2F1FBCAA00A775FF /* XCRemoteSwiftPackageReference "ScrechKit" */;
+			productName = ScrechKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F343B0FE2F00587A00AD0818 /* Project object */;
 }

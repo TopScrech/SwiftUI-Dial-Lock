@@ -1,12 +1,11 @@
-import SwiftUI
-import UIKit
+import ScrechKit
 
 struct RotaryPasscodeLock: View {
-    var codeLength: Int = 4
-    var dialRange: Int = 40
+    var codeLength = 4
+    var dialRange = 40
     
     @State private var entered: [Int] = []
-    @State private var dialValue: Int = 0
+    @State private var dialValue = 0
     
     var body: some View {
         ZStack {
@@ -15,13 +14,13 @@ struct RotaryPasscodeLock: View {
             VStack(spacing: 16) {
                 VStack(spacing: 10) {
                     Text("Enter Passcode")
-                        .font(.system(.title3, design: .rounded).weight(.semibold))
+                        .title3(.semibold, design: .rounded)
                         .foregroundStyle(.white.opacity(0.92))
                     
                     PasscodeDots(count: codeLength, filled: entered.count)
                     
                     Text(entered.isEmpty ? "Entered: -" : "Entered: \(entered.map(String.init).joined(separator: " "))")
-                        .font(.system(.caption, design: .monospaced).weight(.semibold))
+                        .caption(.semibold, design: .rounded)
                         .foregroundStyle(.white.opacity(0.75))
                 }
                 .padding(.top, 42)
@@ -43,11 +42,12 @@ struct RotaryPasscodeLock: View {
                         }
                     } label: {
                         Image(systemName: "delete.left")
-                            .font(.system(size: 18, weight: .semibold))
+                            .largeTitle()
+                            .semibold()
                             .foregroundStyle(.white.opacity(0.9))
-                            .frame(width: 52, height: 52)
+                            .frame(52)
                             .background(.white.opacity(0.12))
-                            .clipShape(Circle())
+                            .clipShape(.circle)
                     }
                     
                     Button {
@@ -55,12 +55,12 @@ struct RotaryPasscodeLock: View {
                         dialValue = 0
                     } label: {
                         Text("Reset")
-                            .font(.system(.headline, design: .rounded).weight(.semibold))
+                            .headline(.semibold, design: .rounded)
                             .foregroundStyle(.white.opacity(0.92))
                             .frame(height: 52)
                             .padding(.horizontal, 18)
                             .background(.white.opacity(0.12))
-                            .clipShape(Capsule())
+                            .clipShape(.capsule)
                     }
                 }
                 .padding(.bottom, 24)
@@ -79,7 +79,7 @@ private struct PasscodeDots: View {
             ForEach(0..<count, id: \.self) { i in
                 Circle()
                     .fill(.white.opacity(i < filled ? 0.95 : 0.35))
-                    .frame(width: 10, height: 10)
+                    .frame(10)
             }
         }
     }
@@ -88,12 +88,12 @@ private struct PasscodeDots: View {
 struct RotaryDial: View {
     @Binding var value: Int
     
-    var range: Int = 40
-    var showsNumbers: Bool = true
-    var snap: Bool = true
+    var range = 40
+    var showsNumbers = true
+    var snap = true
     var onPick: ((Int) -> Void)? = nil
     
-    @State private var dialRotationCW: Double = 0
+    @State private var dialRotationCW = 0.0
     @State private var lastTouchAngleCW: Double?
     @State private var feedback = UISelectionFeedbackGenerator()
     @State private var lastEmittedValue: Int?
@@ -103,11 +103,11 @@ struct RotaryDial: View {
             let size = min(proxy.size.width, proxy.size.height)
             let center = CGPoint(x: proxy.size.width / 2, y: proxy.size.height / 2)
             let radius = size * 0.48
-            let stepAngle = 360.0 / Double(max(range, 1))
+            let stepAngle = 360 / Double(max(range, 1))
             
             ZStack {
                 Circle()
-                    .fill(Color.black.opacity(0.18))
+                    .fill(.black.opacity(0.18))
                     .overlay(
                         Circle()
                             .strokeBorder(.white.opacity(0.22), lineWidth: size * 0.01)
@@ -120,8 +120,8 @@ struct RotaryDial: View {
                 }
                 
                 Circle()
-                    .fill(Color.black.opacity(0.35))
-                    .frame(width: size * 0.34, height: size * 0.34)
+                    .fill(.black.opacity(0.35))
+                    .frame(size * 0.34)
                     .overlay(
                         Circle()
                             .strokeBorder(.white.opacity(0.12), lineWidth: size * 0.01)
@@ -170,6 +170,7 @@ struct RotaryDial: View {
             .onChange(of: value) { _, newValue in
                 guard lastTouchAngleCW == nil else { return }
                 let target = Double(newValue) * stepAngle
+                
                 if snap {
                     withAnimation(.spring(response: 0.32, dampingFraction: 0.82)) {
                         dialRotationCW = target
@@ -196,7 +197,7 @@ struct RotaryDial: View {
                     .fill(.white.opacity(isMajor ? 0.75 : 0.32))
                     .frame(width: size * 0.006, height: len)
                     .offset(y: -radius + len / 2)
-                    .rotationEffect(.degrees(Double(i) * 360.0 / Double(tickCount)))
+                    .rotationEffect(.degrees(Double(i) * 360 / Double(tickCount)))
             }
         }
     }
@@ -208,7 +209,7 @@ struct RotaryDial: View {
         
         return ZStack {
             ForEach(stride(from: 0, to: range, by: every).map { $0 }, id: \.self) { n in
-                let a = Double(n) * 360.0 / Double(range)
+                let a = Double(n) * 360 / Double(range)
                 
                 ZStack {
                     Text("\(n)")
@@ -225,7 +226,7 @@ struct RotaryDial: View {
     private func indicator(size: CGFloat) -> some View {
         Triangle()
             .fill(.white.opacity(0.9))
-            .frame(width: size * 0.10, height: size * 0.07)
+            .frame(width: size * 0.1, height: size * 0.07)
             .offset(y: -size * 0.52)
             .rotationEffect(.degrees(dialRotationCW))
             .shadow(color: .black.opacity(0.25), radius: 6, y: 3)
@@ -246,7 +247,7 @@ struct RotaryDial: View {
     
     private func normalizedValue(range: Int) -> Int {
         let r = max(range, 1)
-        let step = 360.0 / Double(r)
+        let step = 360 / Double(r)
         var v = Int((dialRotationCW / step).rounded())
         v %= r
         if v < 0 { v += r }
@@ -258,11 +259,11 @@ struct RotaryDial: View {
         let dy = Double(point.y - center.y)
         let radians = atan2(dy, dx)
         
-        var deg = radians * 180.0 / .pi
-        deg = deg + 90.0
-        deg = deg.truncatingRemainder(dividingBy: 360.0)
-        if deg < 0 { deg += 360.0 }
-        let cw = (360.0 - deg).truncatingRemainder(dividingBy: 360.0)
+        var deg = radians * 180 / .pi
+        deg = deg + 90
+        deg = deg.truncatingRemainder(dividingBy: 360)
+        if deg < 0 { deg += 360 }
+        let cw = (360 - deg).truncatingRemainder(dividingBy: 360)
         return cw
     }
     
@@ -291,9 +292,9 @@ private struct BackgroundBlur: View {
         ZStack {
             LinearGradient(
                 colors: [
-                    Color(red: 0.08, green: 0.20, blue: 0.45),
+                    Color(red: 0.08, green: 0.2, blue: 0.45),
                     Color(red: 0.15, green: 0.42, blue: 0.42),
-                    Color(red: 0.55, green: 0.40, blue: 0.10)
+                    Color(red: 0.55, green: 0.4, blue: 0.1)
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -304,11 +305,5 @@ private struct BackgroundBlur: View {
                 .fill(.ultraThinMaterial)
                 .ignoresSafeArea()
         }
-    }
-}
-
-struct RotaryPasscodeLockDemo: View {
-    var body: some View {
-        RotaryPasscodeLock()
     }
 }
