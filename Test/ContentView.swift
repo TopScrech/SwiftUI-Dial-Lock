@@ -37,7 +37,10 @@ struct RotaryPasscodeLock: View {
                 
                 HStack(spacing: 16) {
                     Button {
-                        if !entered.isEmpty { entered.removeLast() }
+                        if !entered.isEmpty {
+                            entered.removeLast()
+                            if entered.isEmpty { dialValue = 0 }
+                        }
                     } label: {
                         Image(systemName: "delete.left")
                             .font(.system(size: 18, weight: .semibold))
