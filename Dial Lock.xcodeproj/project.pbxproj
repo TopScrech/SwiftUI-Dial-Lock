@@ -11,6 +11,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F3365B8C2F44408500824B1C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F343B1062F00587A00AD0818 /* Dial Lock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dial Lock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -37,6 +38,7 @@
 		F343B0FD2F00587A00AD0818 = {
 			isa = PBXGroup;
 			children = (
+				F3365B8C2F44408500824B1C /* README.md */,
 				F343B1082F00587A00AD0818 /* Dial Lock */,
 				F343B1072F00587A00AD0818 /* Products */,
 			);
