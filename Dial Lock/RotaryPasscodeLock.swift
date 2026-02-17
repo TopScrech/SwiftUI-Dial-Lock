@@ -1,8 +1,8 @@
 import ScrechKit
 
 struct RotaryPasscodeLock: View {
-    var codeLength = 4
-    var dialRange = 40
+    private let codeLength = 4
+    private let dialRange = 40
     
     @State private var entered: [Int] = []
     @State private var dialValue = 0
