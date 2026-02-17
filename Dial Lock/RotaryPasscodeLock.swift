@@ -42,8 +42,7 @@ struct RotaryPasscodeLock: View {
                         }
                     } label: {
                         Image(systemName: "delete.left")
-                            .largeTitle()
-                            .semibold()
+                            .title3(.semibold)
                             .foregroundStyle(.white.opacity(0.9))
                             .frame(52)
                             .background(.white.opacity(0.12))
@@ -66,6 +65,13 @@ struct RotaryPasscodeLock: View {
                 .padding(.bottom, 24)
             }
             .padding(.horizontal, 24)
+        }
+        .toolbar {
+            NavigationLink {
+                SettingsView()
+            } label: {
+                Image(systemName: "gear")
+            }
         }
     }
 }

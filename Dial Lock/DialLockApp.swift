@@ -2,9 +2,14 @@ import SwiftUI
 
 @main
 struct DialLockApp: App {
+    @AppStorage("hideStatusBar") private var hideStatusBar = false
+    
     var body: some Scene {
         WindowGroup {
-            RotaryPasscodeLock()
+            NavigationStack {
+                RotaryPasscodeLock()
+            }
+            .statusBar(hidden: hideStatusBar)
         }
     }
 }
